@@ -22,6 +22,6 @@
     "globals": {
         "define": true,
         "module": true,
-        "pureJSModal": true
+        "pureJSDialog": true
     }
 }

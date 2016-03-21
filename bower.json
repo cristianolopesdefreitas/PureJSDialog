@@ -1,0 +1,21 @@
+{
+  "name": "PureJSDialog",
+  "description": "Custom alert, comfirm and prompt with javaScript.",
+  "main": "simpleDialogJS.js",
+  "authors": [
+    "Cristiano Lopes de Freitas"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/cristianolopesdefreitas/PureJSDialog",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "^4.0.0"
+  }
+}

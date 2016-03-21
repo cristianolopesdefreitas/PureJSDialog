@@ -62,12 +62,21 @@ module.exports = function( grunt ) {
         }, // cssmin
 
         sass: {
+            options: {
+                sourcemap: 'none'
+            },
             dev: {
+                options: {
+                    style: 'expanded'
+                },
                 files: {
-                    '<%= appConfig.dist.css %>/PureJSDialog.css': '<%= appConfig.baseCSS %>'
+                    '<%= appConfig.dev.css %>/PureJSDialog.css': '<%= appConfig.baseCSS %>'
                 }
             },
             dist: {
+                options: {
+                    style: 'compressed'
+                },
                 files: {
                     '<%= appConfig.dist.css %>/PureJSDialog.min.css': '<%= appConfig.baseCSS %>'
                 }
@@ -87,6 +96,29 @@ module.exports = function( grunt ) {
             }
         }, // targethtml
 
+        copy: {
+            dev: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'bower_components/normalize-css/',
+                        dest: '<%= appConfig.dev.css %>/',
+                        src: [ '*.css' ]
+                    }
+                ]
+            },
+            dist: {
+                files:  [
+                    {
+                        expand: true,
+                        cwd: 'bower_components/normalize-css/',
+                        dest: '<%= appConfig.dist.css %>/',
+                        src: [ '*.css' ]
+                    }
+                ]
+            }
+        }, // copy
+
         connect: {
             server: {
                 options: {
@@ -101,7 +133,7 @@ module.exports = function( grunt ) {
         watch: {
             dev: {
                 files: '<%= appConfig.watchFiles %>',
-                tasks: [ 'jshint', 'targethtml:dev' ],
+                tasks: [ 'jshint', 'targethtml:dev', 'sass:dev' ],
                 options: {
                     livereload: true
                 }
@@ -117,6 +149,8 @@ module.exports = function( grunt ) {
         grunt.task.run([
             'jshint',
             'targethtml:dev',
+            'sass:dev',
+            'copy:dev',
             'connect',
             'watch:dev'
         ]);
@@ -127,7 +161,8 @@ module.exports = function( grunt ) {
             'jshint',
             'targethtml:dist',
             'uglify:dist',
-            'cssmin:dist'
+            'copy:dist',
+            'sass:dist'
         ]);
     });
 
@@ -135,6 +170,7 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-sass' );
     grunt.loadNpmTasks( 'grunt-targethtml' );
+    grunt.loadNpmTasks( 'grunt-contrib-copy' );
     grunt.loadNpmTasks( 'grunt-contrib-connect' );
     grunt.loadNpmTasks( 'grunt-contrib-watch' );
 };

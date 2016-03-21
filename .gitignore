@@ -1,2 +1,6 @@
 /node_modules
+/bower_components
 /.sass-cache
+/dev/index.html
+/dev/css/normalize.css
+/dev/css/PureJSDialog.css
