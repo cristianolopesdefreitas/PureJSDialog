@@ -18,13 +18,18 @@ module.exports = function( grunt ) {
             ],
             baseJS: [
                 '<%= appConfig.dev.js %>/PureJSDialog.js',
-                '<%= appConfig.dev.js %>/PureJSDialog.utils.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.templates.js',
+                '<%= appConfig.dev.js %>/PureJSDialog.listenerControl.js',
+                '<%= appConfig.dev.js %>/PureJSDialog.utils.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.factory.js'
             ],
             watchFiles: [
                 'Gruntfile.js',
+                '<%= appConfig.dev.js %>/app.js',
                 '<%= appConfig.baseCSS %>',
+                '<%= appConfig.dev.css %>/_dialog.scss',
+                '<%= appConfig.dev.css %>/_dialog-header.scss',
+                '<%= appConfig.dev.css %>/_dialog-footer.scss',
                 '<%= appConfig.baseJS %>',
                 '<%= appConfig.dev.base %>/examples.html'
             ]
@@ -114,6 +119,12 @@ module.exports = function( grunt ) {
                         cwd: 'bower_components/normalize-css/',
                         dest: '<%= appConfig.dist.css %>/',
                         src: [ '*.css' ]
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= appConfig.dev.js %>/',
+                        dest: '<%= appConfig.dist.js %>/',
+                        src: [ 'app.js' ]
                     }
                 ]
             }
