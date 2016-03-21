@@ -35,7 +35,7 @@
                         '<div id="pure-js-dialog-body">' +
                             '<p>[[ message ]]</p>' +
                             '<div>' +
-                                '<input type="text" name="promptField" class="pure-js-dialog-field" placeholder="[[ placeholder ]]">' +
+                                '<input type="text" name="promptField" id="[[ fieldID ]]" class="pure-js-dialog-field" placeholder="[[ placeholderField ]]">' +
                             '</div>' +
                         '</div>' +
                         '<div id="pure-js-dialog-footer">' +

@@ -4,6 +4,7 @@
     var documentBody = document.body,
         defaults = {
             title: '',
+            placeholderField: '...',
             textAcceptButton: 'Aceitar',
             textCancelButton: 'Cancelar'
         };
