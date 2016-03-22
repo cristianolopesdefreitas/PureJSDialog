@@ -14,7 +14,7 @@
                         '<button type="button" id="[[ acceptButtonID ]]" class="pure-js-dialog-button pure-js-dialog-button-[[ acceptButtonColor ]]">[[ acceptButtonText ]]</button>' +
                     '</div>' +
                 '</div>',
-        comfirm: '<div id="pure-js-dialog">' +
+        confirm: '<div id="pure-js-dialog">' +
                         '<div id="pure-js-dialog-header">' +
                             '<h3>[[ title ]]</h3>' +
                             '<span id="[[ closeDialogID ]]" class="pure-js-dialog-close">x</span>' +

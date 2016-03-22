@@ -9,13 +9,13 @@
             acceptButtonColor: 'green',
             closeDialogID: 'close-dialog-test',
             onClose: PureJSDialog.factory.removeDialog,
-            acceptButtonID: 'comfirm-accept-test',
+            acceptButtonID: 'confirm-accept-test',
             onAccept: PureJSDialog.factory.removeDialog
         });
     }
 
     function openConfirm() {
-        PureJSDialog.factory.createDialog( 'comfirm', {
+        PureJSDialog.factory.createDialog( 'confirm', {
             title: 'Mensagem do Sistema',
             message: 'Sua mensagem aqui!!!',
             acceptButtonText: 'OK',
@@ -23,7 +23,7 @@
             cancelButtonText: 'Cancelar',
             closeDialogID: 'close-dialog-test',
             onClose: PureJSDialog.factory.removeDialog,
-            acceptButtonID: 'comfirm-accept-test',
+            acceptButtonID: 'confirm-accept-test',
             onAccept: PureJSDialog.factory.removeDialog,
             cancelButtonID: 'cancel-test',
             onCancel: PureJSDialog.factory.removeDialog
@@ -38,7 +38,7 @@
             cancelButtonText: 'Cancelar',
             closeDialogID: 'close-dialog-test',
             onClose: PureJSDialog.factory.removeDialog,
-            acceptButtonID: 'comfirm-accept-test',
+            acceptButtonID: 'confirm-accept-test',
             acceptButtonColor: 'green',
             onAccept: PureJSDialog.factory.removeDialog,
             cancelButtonID: 'cancel-test',
@@ -61,11 +61,11 @@
 
     function init() {
         var buttonAlert = document.getElementById( 'button-alert' ),
-            buttonComfirm = document.getElementById( 'button-comfirm' ),
+            buttonConfirm = document.getElementById( 'button-confirm' ),
             buttonPrompt = document.getElementById( 'button-prompt' );
 
         addEvent( 'click', buttonAlert, openAlert );
-        addEvent( 'click', buttonComfirm, openConfirm );
+        addEvent( 'click', buttonConfirm, openConfirm );
         addEvent( 'click', buttonPrompt, openPrompt );
     }
 
