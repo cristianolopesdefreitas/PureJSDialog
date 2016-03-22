@@ -37,6 +37,7 @@
 
 			return template;
 		},
+        // faz o merge de dois objetos
         mergeObject: function( defaults, custom ) {
             var merged = {},
                 index = null;

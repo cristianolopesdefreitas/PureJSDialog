@@ -16,6 +16,9 @@ module.exports = function( grunt ) {
             baseCSS: [
                 '<%= appConfig.dev.css %>/main.scss'
             ],
+            baseIE8CSS: [
+                '<%= appConfig.dev.css %>/ie8.scss'
+            ],
             baseJS: [
                 '<%= appConfig.dev.js %>/PureJSDialog.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.templates.js',
@@ -47,6 +50,9 @@ module.exports = function( grunt ) {
 
         uglify: {
             dist: {
+                options: {
+                    preserveComments: /(?:^!)/
+                },
                 files: {
                     '<%= appConfig.dist.js %>/PureJSDialog.min.js': '<%= appConfig.baseJS %>'
                 }
@@ -75,7 +81,8 @@ module.exports = function( grunt ) {
                     style: 'expanded'
                 },
                 files: {
-                    '<%= appConfig.dev.css %>/PureJSDialog.css': '<%= appConfig.baseCSS %>'
+                    '<%= appConfig.dev.css %>/PureJSDialog.css': '<%= appConfig.baseCSS %>',
+                    '<%= appConfig.dev.css %>/PureJSDialog.ie8.css': '<%= appConfig.baseIE8CSS %>'
                 }
             },
             dist: {
@@ -83,7 +90,8 @@ module.exports = function( grunt ) {
                     style: 'compressed'
                 },
                 files: {
-                    '<%= appConfig.dist.css %>/PureJSDialog.min.css': '<%= appConfig.baseCSS %>'
+                    '<%= appConfig.dist.css %>/PureJSDialog.min.css': '<%= appConfig.baseCSS %>',
+                    '<%= appConfig.dist.css %>/PureJSDialog.ie8.css': '<%= appConfig.baseIE8CSS %>'
                 }
             }
         },
@@ -102,24 +110,8 @@ module.exports = function( grunt ) {
         }, // targethtml
 
         copy: {
-            dev: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'bower_components/normalize-css/',
-                        dest: '<%= appConfig.dev.css %>/',
-                        src: [ '*.css' ]
-                    }
-                ]
-            },
             dist: {
                 files:  [
-                    {
-                        expand: true,
-                        cwd: 'bower_components/normalize-css/',
-                        dest: '<%= appConfig.dist.css %>/',
-                        src: [ '*.css' ]
-                    },
                     {
                         expand: true,
                         cwd: '<%= appConfig.dev.js %>/',
@@ -149,7 +141,7 @@ module.exports = function( grunt ) {
                     livereload: true
                 }
             }
-        }
+        } // watch
     });
 
     grunt.registerTask( 'default', function() {
@@ -161,7 +153,6 @@ module.exports = function( grunt ) {
             'jshint',
             'targethtml:dev',
             'sass:dev',
-            'copy:dev',
             'connect',
             'watch:dev'
         ]);

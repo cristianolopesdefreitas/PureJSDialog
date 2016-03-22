@@ -4,9 +4,11 @@
     var documentBody = document.body,
         defaults = {
             title: '',
-            placeholderField: '...',
-            textAcceptButton: 'Aceitar',
-            textCancelButton: 'Cancelar'
+            placeholderField: '',
+            acceptButtonText: 'Aceitar',
+            acceptButtonColor: 'gray',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: 'gray'
         };
 
     PureJSDialog.factory = {

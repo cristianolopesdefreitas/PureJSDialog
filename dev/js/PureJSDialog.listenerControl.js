@@ -14,12 +14,14 @@
                 PureJSDialog.listenerControl.dispatch( eventTarget );
             });
         },
+        // adiciona o target o evento e a função que será executada em uma coleção para aguardar o bind no body
         addListener: function( event, target, fn ) {
             listeners[ target ] = {
                 type: event,
                 fn: fn
             };
         },
+        // executa uma função caso haja o target e o evento sejam os mesmos que foram armazenados
         dispatch: function( eventTarget ) {
             var target = PureJSDialog.utils.getTargetIdByEvent( eventTarget );
 
@@ -29,6 +31,7 @@
         }
     };
 
+    // adiciona o bind para o evento 'click' diretamento no body
     PureJSDialog.listenerControl.addEvent( 'click' );
 
 }( window.PureJSDialog ));

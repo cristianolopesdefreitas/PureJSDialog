@@ -3,11 +3,4 @@
  *  https://github.com/cristianolopesdefreitas/PureJSDialog
  *  Cristiano Lopes de Freitas
  *  Licence MIT
-*/
-(function() {
-    'use strict';
-
-    var PureJSDialog = PureJSDialog || {};
-
-    window.PureJSDialog = PureJSDialog;
-}());
+*/#pure-js-dialog-wrapper{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);zoom:1}
