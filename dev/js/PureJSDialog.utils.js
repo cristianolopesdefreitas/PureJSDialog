@@ -1,7 +1,28 @@
 (function( PureJSDialog ) {
     'use strict';
 
+    var documentBody = document.body;
+
+    function getAddEventMode() {
+        return documentBody.addEventListener ? 'addEventListener' : 'attachEvent';
+    }
+
+    function getRemoveEventMode() {
+        return documentBody.removeEventListener ? 'removeEventListener' : 'detachEvent';
+    }
+
+    function getEventPrefix() {
+        return documentBody.addEventListener ? '' : 'on';
+    }
+
     PureJSDialog.utils = {
+        // adiciona listeners / fallback para suporte ao ie8
+        addEvent: function( event, element, fn ) {
+            element[ getAddEventMode() ]( getEventPrefix() + event, fn );
+        },
+        removeEvent: function( event, element, fn ) {
+            element[ getRemoveEventMode() ]( getEventPrefix() + event, fn );
+        },
         // retorna a referência para o elemento pelo atributo id
         getById: function( id ) {
             return document.getElementById( id );
@@ -51,6 +72,16 @@
             }
 
             return merged;
+        },
+        clickTriggerPressingEnter: function( eventTarget, button ) {
+            var charCode = eventTarget.which || eventTarget.keyCode;
+
+            if ( charCode === 13 ) {
+                button.click();
+            }
+        },
+        elementFocus: function( element ) {
+            element.focus();
         }
     };
 

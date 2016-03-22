@@ -5,11 +5,32 @@
         defaults = {
             title: '',
             placeholderField: '',
-            acceptButtonText: 'Aceitar',
+            acceptButtonText: 'OK',
             acceptButtonColor: 'gray',
             cancelButtonText: 'Cancelar',
             cancelButtonColor: 'gray'
-        };
+        },
+        dialogAcceptButton = null;
+
+    function addListener( settings ) {
+        if ( settings.onClose && settings.closeDialogID ) {
+            PureJSDialog.listenerControl.addListener( 'click', settings.closeDialogID, settings.onClose );
+        }
+
+        if ( settings.onAccept && settings.acceptButtonID ) {
+            PureJSDialog.listenerControl.addListener( 'click', settings.acceptButtonID, settings.onAccept );
+        }
+
+        if ( settings.onCancel && settings.cancelButtonID ) {
+            PureJSDialog.listenerControl.addListener( 'click', settings.cancelButtonID, settings.onCancel );
+        }
+    }
+
+    function clickAcceptButton( eventTarget ) {
+        if ( dialogAcceptButton ) {
+            PureJSDialog.utils.clickTriggerPressingEnter( eventTarget, dialogAcceptButton );
+        }
+    }
 
     PureJSDialog.factory = {
         // cria um novo modal no body
@@ -18,20 +39,10 @@
 
             settings = PureJSDialog.utils.mergeObject( defaults, settings );
 
-            if ( settings.onClose && settings.closeDialogID ) {
-                PureJSDialog.listenerControl.addListener( 'click', settings.closeDialogID, settings.onClose );
-            }
-
-            if ( settings.onAccept && settings.acceptButtonID ) {
-                PureJSDialog.listenerControl.addListener( 'click', settings.acceptButtonID, settings.onAccept );
-            }
-
-            if ( settings.onCancel && settings.cancelButtonID ) {
-                PureJSDialog.listenerControl.addListener( 'click', settings.cancelButtonID, settings.onCancel );
-            }
+            addListener( settings );
 
             if ( PureJSDialog.utils.getById( 'pure-js-dialog-wrapper' ) ) {
-                this.removeModal();
+                this.removeDialog();
             }
 
             dialogWrapper.setAttribute( 'id', 'pure-js-dialog-wrapper' );
@@ -40,10 +51,22 @@
 
             this.resizeDialog();
             this.showDialog();
+
+            dialogAcceptButton = document.querySelector( '.pure-js-dialog-button-accept' );
+
+            if ( type === 'prompt' ) {
+                PureJSDialog.utils.elementFocus( PureJSDialog.utils.getById( settings.fieldID ) );
+            } else {
+                PureJSDialog.utils.elementFocus( dialogAcceptButton );
+            }
+
+            PureJSDialog.utils.addEvent( 'keypress', documentBody, clickAcceptButton );
         },
         // remove o modal body
         removeDialog: function() {
             documentBody.removeChild( PureJSDialog.utils.getById( 'pure-js-dialog-wrapper' ) );
+
+            PureJSDialog.utils.removeEvent( 'keypress', documentBody, clickAcceptButton );
         },
         // ajusta o tamanho do modal
         resizeDialog: function() {

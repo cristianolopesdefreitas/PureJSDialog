@@ -22,17 +22,16 @@ module.exports = function( grunt ) {
             baseJS: [
                 '<%= appConfig.dev.js %>/PureJSDialog.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.templates.js',
-                '<%= appConfig.dev.js %>/PureJSDialog.listenerControl.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.utils.js',
+                '<%= appConfig.dev.js %>/PureJSDialog.listenerControl.js',
                 '<%= appConfig.dev.js %>/PureJSDialog.factory.js'
             ],
             watchFiles: [
                 'Gruntfile.js',
                 '<%= appConfig.dev.js %>/app.js',
                 '<%= appConfig.baseCSS %>',
-                '<%= appConfig.dev.css %>/_dialog.scss',
-                '<%= appConfig.dev.css %>/_dialog-header.scss',
-                '<%= appConfig.dev.css %>/_dialog-footer.scss',
+                '<%= appConfig.baseIE8CSS %>',
+                '<%= appConfig.dev.css %>/variables.scss',
                 '<%= appConfig.baseJS %>',
                 '<%= appConfig.dev.base %>/examples.html'
             ]
@@ -58,19 +57,6 @@ module.exports = function( grunt ) {
                 }
             }
         }, // uglify
-
-        cssmin: {
-            dev: {
-                files: {
-                    '<%= appConfig.dev.css %>/PureJSDialog.css': '<%= appConfig.baseCSS %>'
-                }
-            },
-            dist: {
-                files: {
-                    '<%= appConfig.dist.css %>/PureJSDialog.min.css': '<%= appConfig.baseCSS %>'
-                }
-            }
-        }, // cssmin
 
         sass: {
             options: {

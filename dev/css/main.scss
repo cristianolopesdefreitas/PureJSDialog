@@ -21,7 +21,15 @@
 
     input, button {
         font-family: arial;
-        outline: none;
+
+        &:hover, &:active, &:focus {
+            outline: none;
+        }
+    }
+
+    // remove o pontilhado dos botões em foco no firefox
+    input::-moz-focus-inner, button::-moz-focus-inner {
+        border: 0;
     }
 
     h3 {

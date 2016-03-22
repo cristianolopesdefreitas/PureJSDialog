@@ -1,6 +1,23 @@
 (function( PureJSDialog ) {
     'use strict';
 
+    function getPromptText() {
+        var text = document.getElementById( 'field-dialog' ).value;
+
+        console.log( 'O valor digitado foi: ' + text );
+
+        PureJSDialog.factory.removeDialog();
+
+        PureJSDialog.factory.createDialog( 'alert', {
+            title: 'Veja o resultado',
+            message: 'O valor digitado foi: ' + text,
+            closeDialogID: 'close-dialog-test',
+            onClose: PureJSDialog.factory.removeDialog,
+            acceptButtonID: 'confirm-accept-test',
+            onAccept: PureJSDialog.factory.removeDialog
+        });
+    }
+
     function openAlert() {
         PureJSDialog.factory.createDialog( 'alert', {
             title: 'Mensagem do Sistema',
@@ -40,7 +57,7 @@
             onClose: PureJSDialog.factory.removeDialog,
             acceptButtonID: 'confirm-accept-test',
             acceptButtonColor: 'green',
-            onAccept: PureJSDialog.factory.removeDialog,
+            onAccept: getPromptText,
             cancelButtonID: 'cancel-test',
             cancelButtonColor: 'red',
             onCancel: PureJSDialog.factory.removeDialog,
@@ -55,7 +72,7 @@
             prefix = documentBody.addEventListener ? '' : 'on';
 
         element[ eventListener ]( prefix + event, function( eventTarget ) {
-            fn();
+            fn( eventTarget );
         });
     }
 
