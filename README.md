@@ -52,6 +52,10 @@ PureJSDialog.factory.createDialog( dialog {
 - **placeholderField** => It's not mandatory, default void, only for the dialog type 'prompt'.
 - **fieldID** => It is required at all as you will retrieve the text entered here? Only for the dialog type 'prompt'.
 
+### Cross-browser
+
+Modern browsers and Internet Explorer 8.
+
 ### Licence
 
 (The MIT Licence)
